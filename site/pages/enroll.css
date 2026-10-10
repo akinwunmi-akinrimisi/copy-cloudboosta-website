@@ -23,6 +23,7 @@
 .help{font-size:14px;color:var(--ink3);margin-top:8px}
 .tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .tile{position:relative;display:block;min-width:0}
+.tile[hidden]{display:none}
 .tile input{position:absolute;opacity:0;width:1px;height:1px;left:12px;top:12px}
 .tile .t{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center;min-height:88px;padding:18px 20px;border:1px solid var(--line2);border-radius:6px;background:#0A0E1A;cursor:pointer;transition:border-color .2s,background .2s}
 .tile .t:hover{border-color:rgba(255,255,255,.34)}

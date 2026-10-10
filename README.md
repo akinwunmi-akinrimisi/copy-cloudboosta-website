@@ -1,6 +1,6 @@
 # Cloudboosta website (static copy)
 
-A copy of the public content of www.cloudboosta.com, taken on 6 October 2026 for local work.
+A copy of the public content of www.cloudboosta.com, taken on 6 October 2026 and refreshed on 10 October 2026 for local work.
 It is **not** connected to the live site: nothing here deploys anywhere, and changes made here
 do not reach www.cloudboosta.com.
 

@@ -23,6 +23,7 @@
     <a href="/">Home</a>
     <a href="/cloud-services/">Cloud Services</a>
     <a href="/academy/">Academy</a>
+    <a href="/academy/ai-native-cloud/">AI-Native Cloud</a>
     <a href="/assessments/">Assessments</a>
     <span class="dd"><a href="/resources/">Resources <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
       <span class="dd-menu">
@@ -44,6 +45,7 @@
   <a href="/">Home</a>
   <a href="/cloud-services/">Cloud Services</a>
   <a href="/academy/">Academy</a>
+  <a href="/academy/ai-native-cloud/">AI-Native Cloud</a>
   <a href="/assessments/">Assessments</a>
   <a href="/resources/">Resources</a>
   <a class="sub" href="/resources/">Overview</a>
@@ -65,7 +67,7 @@
       <h1 class="disp">What we collect, <em>and what we don't.</em></h1>
       <p class="lead">This covers the Cloudboosta assessments, webinar registration, enrolment and online payment, and the book-a-call and newsletter forms on this site. Cloudboosta Technology Solutions Ltd is the data controller. For anything on this page, including a request to see or delete your data, email <a href="mailto:support@cloudboosta.co.uk">support@cloudboosta.co.uk</a>.</p>
       <div class="legal-meta">
-        <span class="mono">Version privacy-1.4</span>
+        <span class="mono">Version privacy-1.6</span>
         <span class="mono">Last updated 21 September 2026</span>
       </div>
     </div>
@@ -88,6 +90,7 @@
           <li><strong>A payment</strong> — if you pay online, the payment is taken by Stripe on Stripe's own page. We never see or store your card number. We keep what you paid, in which currency, when, and Stripe's reference for it.</li>
           <li><strong>Book a call</strong> — your name, email, organisation if you gave one, the topic, and your message.</li>
           <li><strong>Newsletter</strong> — your email address.</li>
+          <li><strong>A programme waitlist</strong> — your name, email and WhatsApp number, and whether you ticked the box allowing us to call or message you about that programme. If you did not tick it, we keep the number but use only email.</li>
         </ul>
         <p>Every form carries a hidden field a person never sees; a submission that fills it in is treated as automated and discarded. We do not store your IP address with anything you send — only whether the device was a phone, tablet or desktop.</p>
         <p>We also record which step of an assessment was on screen and whether it was finished, so we can fix questions people give up on. That uses a random identifier that lives in your browser tab and is never linked to you. <strong>There are no advertising cookies, no cross-site tracking and no third-party analytics script.</strong> The only thing kept in your browser is your progress through an assessment.</p>
@@ -108,7 +111,7 @@
           <li><strong>Supabase</strong> — stores your answers, result, contact details and form submissions.</li>
           <li><strong>Netlify</strong> — serves the site and runs the scoring and form functions.</li>
           <li><strong>Resend</strong> — sends your result email, your webinar confirmation, your enrolment and payment emails, and our internal alerts.</li>
-          <li><strong>MailerLite</strong> — if you register for a webinar, holds your name and email on the list for that webinar and sends its reminders and replay.</li>
+          <li><strong>MailerLite</strong> — if you register for a webinar, or join the waitlist for a programme, holds your name and email (and, for a waitlist, your WhatsApp number and your call-consent answer) on the list for that webinar or programme and sends its reminders, replay, or news of places opening.</li>
           <li><strong>Stripe</strong> — if you pay online, takes the payment. Stripe receives your name, your email and what you are paying for, and collects your card details itself, under its own privacy notice.</li>
           <li><strong>Google Calendar</strong> — only if you book a strategy session.</li>
         </ul>
@@ -120,14 +123,14 @@
 
         <h2 id="keep">How long we keep it</h2>
         <p>Contact details, answers and form submissions are kept for <strong>24 months</strong> from our last contact with you, then the identifying fields are erased. What remains is an anonymous score we keep to understand how the assessment performs over time. Webinar registrations and enrolments follow the same rule; for a payment we keep the amount and date, without your name, because accounting law requires it.</p>
-        <p>You stay on a webinar's MailerLite list until you unsubscribe or ask us to delete you. A deletion request is carried out there as well as in our own database. Stripe keeps its own record of a payment for as long as the law requires it to.</p>
+        <p>You stay on a webinar's or a programme waitlist's MailerLite list until you unsubscribe or ask us to delete you. A deletion request is carried out there as well as in our own database. Stripe keeps its own record of a payment for as long as the law requires it to.</p>
 
         <h2 id="rights">Your rights</h2>
         <p>Under the Nigeria Data Protection Act 2023, and the UK and EU GDPR where they apply to you, you can ask us to show you a copy of what we hold, correct it, delete it, stop using it for marketing, or object to or restrict other uses. Email <a href="mailto:support@cloudboosta.co.uk">support@cloudboosta.co.uk</a> — you do not need to give a reason, and we respond within 30 days. Every marketing email carries an unsubscribe link that takes effect immediately.</p>
         <p>If you are unhappy with how we handled a request, you can complain to the Nigeria Data Protection Commission or to the UK Information Commissioner's Office.</p>
 
         <h2 id="changes">Changes to this notice</h2>
-        <p>This notice is versioned, and the version in force when you submitted an assessment is stored with your consent record — so it is always clear which wording you agreed to. privacy-1.4 (21 September 2026) added webinar registration, online payment through Stripe, MailerLite, and a plain statement of where we use AI and where we don't. privacy-1.3 (26 August 2026) moved form submissions from Netlify Forms into our own database and shortened the notice. No commitment made in an earlier version has been removed.</p>
+        <p>This notice is versioned, and the version in force when you submitted an assessment is stored with your consent record — so it is always clear which wording you agreed to. privacy-1.6 (10 October 2026) added the WhatsApp number and call-consent box on the programme waitlist. privacy-1.5 (9 October 2026) added the programme waitlist, whose names and emails are also held in MailerLite. privacy-1.4 (21 September 2026) added webinar registration, online payment through Stripe, MailerLite, and a plain statement of where we use AI and where we don't. privacy-1.3 (26 August 2026) moved form submissions from Netlify Forms into our own database and shortened the notice. No commitment made in an earlier version has been removed.</p>
 
       </article>
 
@@ -161,7 +164,7 @@
       <picture><source type="image/webp" srcset="/site/img/logo-white.webp"><img src="/site/img/logo-white.png" alt="Cloudboosta" width="141" height="28"></picture>
       <p class="body">Cloud, DevOps, and optimisation. Practitioners, not theorists.</p>
     </div>
-    <div><p class="fh">Site</p><ul><li><a href="/cloud-services/">Cloud Services</a></li><li><a href="/academy/">Academy</a></li><li><a href="/assessments/">Assessments</a></li><li><a href="/resources/">Resources</a></li><li><a href="/who-we-are/">Who We Are</a></li></ul></div>
+    <div><p class="fh">Site</p><ul><li><a href="/cloud-services/">Cloud Services</a></li><li><a href="/academy/">Academy</a></li><li><a href="/academy/ai-native-cloud/">AI-Native Cloud</a></li><li><a href="/assessments/">Assessments</a></li><li><a href="/resources/">Resources</a></li><li><a href="/who-we-are/">Who We Are</a></li></ul></div>
     <div><p class="fh">Connect</p><ul><li><a href="/book-a-call/">Book a call</a></li><li><a href="mailto:support@cloudboosta.co.uk">support@cloudboosta.co.uk</a></li><li><a href="https://wa.me/447592233052">WhatsApp · Academy</a></li><li><a href="https://wa.me/447565707254">WhatsApp · Services</a></li></ul></div>
     <div><p class="fh">Legal</p><ul><li><a href="/privacy.html">Privacy</a></li><li><a href="#">Terms</a></li></ul></div>
   </div>

@@ -2,5 +2,7 @@ User-agent: *
 Allow: /
 Disallow: /thanks/
 Disallow: /api/
+Disallow: /studio/
+Disallow: /review/
 
 Sitemap: https://www.cloudboosta.com/sitemap.xml

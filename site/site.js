@@ -78,7 +78,19 @@
   /* ---- reveal fallback where scroll-driven animations are unsupported ---- */
   var scrollDriven = window.CSS && CSS.supports && CSS.supports('animation-timeline: view()');
   if ('IntersectionObserver' in window) {
-    if (!scrollDriven && !reduced) document.documentElement.classList.add('js-io');
+    if (!scrollDriven && !reduced) {
+      // This script arrives after first paint (end of body, over the network),
+      // so whatever is on screen has already been drawn. Hiding it now and
+      // fading it back in reads as the page flashing on every navigation.
+      // Mark what is in the viewport as revealed BEFORE the class that hides
+      // the rest goes on; only content below the fold still animates in.
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      $$('.reveal, .wipe, .unveil').forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.top < vh && r.bottom > 0) el.classList.add('in');
+      });
+      document.documentElement.classList.add('js-io');
+    }
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;
@@ -128,22 +140,55 @@
   /* ---- enrol form live total (pricing from config) ---- */
   var form = $('[data-enrol-form]');
   if (form && CB.pricing) {
-    var out = $('[data-total]', form), ccy = $('[name="currency"]', form);
-    // /enroll/?pathway=cc|ad|pe|sre|z2c|pro|p3|p4 pre-selects the tile the reader came from.
+    // The total card is an <aside> NEXT TO the form, not inside it. Looking it
+    // up inside the form found nothing, so every recalculation wrote to null
+    // and the card stayed on its placeholder whatever the reader chose.
+    var out = $('[data-total]'), note = $('[data-total-note]'), ccy = $('[name="currency"]', form);
+    // /enroll/?pathway=cc|ad|pe|sre|z2c|pro|p3|p4|ai pre-selects the tile the reader came from.
     var want = new URLSearchParams(window.location.search).get('pathway');
     if (want && /^[a-z0-9]{1,6}$/.test(want)) {
       var pre = form.querySelector('[name="pathway"][data-pathway="' + want + '"]');
       if (pre) pre.checked = true;
     }
+    var rulesFor = function (pw) {
+      var all = CB.plans || {};
+      return all[pw.getAttribute('data-pathway')] || all['default'] || { full: { instalments: 1, surcharge: 0 } };
+    };
     function total() {
-      var pw = form.querySelector('[name="pathway"]:checked'), plan = form.querySelector('[name="plan"]:checked');
-      if (!pw) { if (out) out.textContent = '·'; return; }
+      var pw = form.querySelector('[name="pathway"]:checked');
+      if (!pw) {
+        if (out) out.textContent = '·';
+        if (note) note.textContent = 'Pick a pathway to see the total.';
+        return;
+      }
+      var rules = rulesFor(pw);
+      // A plan this pathway does not offer is hidden, and if it was the one
+      // chosen the choice falls back to paying in full.
+      $$('[name="plan"]', form).forEach(function (p) {
+        var offered = Object.prototype.hasOwnProperty.call(rules, p.value);
+        var tile = p.closest('.tile'); if (tile) tile.hidden = !offered;
+        if (!offered && p.checked) {
+          p.checked = false;
+          var full = form.querySelector('[name="plan"][value="full"]'); if (full) full.checked = true;
+        }
+      });
+      var plan = form.querySelector('[name="plan"]:checked');
+      var rule = rules[plan ? plan.value : 'full'] || rules.full || { instalments: 1, surcharge: 0 };
       // The radio's value is the pathway id (what the submission reports); the
       // price rides on data-price so the total never depends on the id.
-      var base = parseFloat(pw.getAttribute('data-price')) || 0, plus = plan && plan.value === 'split2' ? CB.pricing.splitSurcharge2 : plan && plan.value === 'split3' ? CB.pricing.splitSurcharge3 : 0;
+      var base = parseFloat(pw.getAttribute('data-price')) || 0;
       var fx = (CB.fx && CB.fx[ccy ? ccy.value : 'GBP']) || CB.fx.GBP;
-      var amount = Math.round((base + plus) * fx.rate);
-      if (out) out.textContent = fx.symbol + amount.toLocaleString('en-GB');
+      var amount = Math.round((base + rule.surcharge) * fx.rate);
+      var fmt = function (n) { return fx.symbol + n.toLocaleString('en-GB'); };
+      if (out) out.textContent = fmt(amount);
+      if (note) {
+        // Same arithmetic as quote() on the server: equal parts, rounded up.
+        var n = rule.instalments || 1, first = Math.ceil(amount / n);
+        var label = (pw.getAttribute('data-label') || '').replace(/ · MOST CHOSEN$/, '');
+        note.textContent = n > 1
+          ? label + ' · ' + n + ' instalments · ' + fmt(first) + ' now, ' + fmt(amount - first) + ' later'
+          : label + ' · paid in full';
+      }
     }
     form.addEventListener('change', total); total();
     // Back from Stripe without paying: /enroll/?cancelled=1. Nothing was

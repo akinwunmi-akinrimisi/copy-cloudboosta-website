@@ -18,7 +18,7 @@
 <a class="skip-link" href="#main">Skip to main content</a>
 
 <!-- DEADLINE BAR -->
-<div class="bar"><span class="mono">Enrollment closes <b data-cb="cohort.enrolmentCloses">27 June 2026</b> · <span data-cb="cohort.seatCap">20</span> seats, by design</span></div>
+<div class="bar"><span class="mono"><span data-cb="cohort.seatCap">20</span> seats per cohort, by design · Current intake: <b><a href="/academy/ai-native-cloud/">AI-Native Cloud Programme, starts <span data-cb="aiNative.startDate">Saturday 7 November 2026</span></a></b></span></div>
 
 <nav class="nav" aria-label="Main">
   <a class="nav-logo" href="/" aria-label="Cloudboosta"><picture><source type="image/webp" srcset="/site/img/logo-white.webp"><img src="/site/img/logo-white.png" alt="Cloudboosta" width="151" height="30"></picture></a>
@@ -26,6 +26,7 @@
     <a href="/">Home</a>
     <a href="/cloud-services/">Cloud Services</a>
     <a href="/academy/">Academy</a>
+    <a href="/academy/ai-native-cloud/">AI-Native Cloud</a>
     <a href="/assessments/">Assessments</a>
     <span class="dd"><a href="/resources/">Resources <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
       <span class="dd-menu">
@@ -47,6 +48,7 @@
   <a href="/">Home</a>
   <a href="/cloud-services/">Cloud Services</a>
   <a href="/academy/">Academy</a>
+  <a href="/academy/ai-native-cloud/">AI-Native Cloud</a>
   <a href="/assessments/">Assessments</a>
   <a href="/resources/">Resources</a>
   <a class="sub" href="/resources/">Overview</a>
@@ -96,7 +98,8 @@
             <legend class="lbl">Pathway</legend>
             <p class="mono u-1524f702">Choose a pathway</p>
             <div class="tiles" id="pathways">
-              <label class="tile"><input type="radio" name="pathway" value="cc" data-price="1350" data-pathway="cc" data-label="Cloud Computing · 8 weeks" required><span class="t"><span><span class="n">Cloud Computing</span><span class="mono m">8 weeks</span></span><span class="figure pr">£1,350</span></span></label>
+              <label class="tile"><input type="radio" name="pathway" value="ai" data-price="799" data-pathway="ai" data-label="AI-Native Cloud Programme · 6 weeks" required><span class="t"><span><span class="n">AI-Native Cloud Programme<span class="chip">Main intake</span></span><span class="mono m">6 weeks · starts <span data-cb="aiNative.startDate">Saturday 7 November 2026</span></span></span><span class="figure pr">£799</span></span></label>
+              <label class="tile"><input type="radio" name="pathway" value="cc" data-price="1350" data-pathway="cc" data-label="Cloud Computing · 8 weeks"><span class="t"><span><span class="n">Cloud Computing</span><span class="mono m">8 weeks</span></span><span class="figure pr">£1,350</span></span></label>
               <label class="tile"><input type="radio" name="pathway" value="ad" data-price="1350" data-pathway="ad" data-label="Advanced DevOps · 8 weeks"><span class="t"><span><span class="n">Advanced DevOps</span><span class="mono m">8 weeks</span></span><span class="figure pr">£1,350</span></span></label>
               <label class="tile"><input type="radio" name="pathway" value="pe" data-price="1350" data-pathway="pe" data-label="Platform Engineering · 8 weeks"><span class="t"><span><span class="n">Platform Engineering</span><span class="mono m">8 weeks</span></span><span class="figure pr">£1,350</span></span></label>
               <label class="tile"><input type="radio" name="pathway" value="sre" data-price="1350" data-pathway="sre" data-label="Site Reliability Engineering · 8 weeks"><span class="t"><span><span class="n">Site Reliability Engineering</span><span class="mono m">8 weeks</span></span><span class="figure pr">£1,350</span></span></label>
@@ -131,8 +134,8 @@
           <legend class="tag">How you'll pay</legend>
           <div class="radios">
             <label class="tile radio"><input type="radio" name="plan" value="full" checked><span class="t"><span class="n"><span class="ring"></span>Pay in full</span><span class="d">The lowest total, one payment.</span></span></label>
-            <label class="tile radio"><input type="radio" name="plan" value="split2"><span class="t"><span class="n"><span class="ring"></span>Split in 2</span><span class="d">Across the course. £100 more than paying in full.</span></span></label>
-            <label class="tile radio"><input type="radio" name="plan" value="split3"><span class="t"><span class="n"><span class="ring"></span>Split in 3</span><span class="d">Across the course. £200 more than paying in full.</span></span></label>
+            <label class="tile radio"><input type="radio" name="plan" value="split2"><span class="t"><span class="n"><span class="ring"></span>Split in 2</span><span class="d">Two payments across the course. The total shows what it adds.</span></span></label>
+            <label class="tile radio"><input type="radio" name="plan" value="split3"><span class="t"><span class="n"><span class="ring"></span>Split in 3</span><span class="d">Three payments across the course. Pathways only.</span></span></label>
           </div>
         </fieldset>
 
@@ -149,7 +152,7 @@
         <div class="dash" aria-live="polite">
           <span class="mono u-d3799af7">Your total</span>
           <div class="figure v" id="tot-v" data-total>·</div>
-          <div class="m" id="tot-m">Pick a pathway to see the total.</div>
+          <div class="m" id="tot-m" data-total-note>Pick a pathway to see the total.</div>
         </div>
       </aside>
     </div>
@@ -180,7 +183,7 @@
       <div class="faq reveal">
         <details open>
           <summary>Can I pay in instalments?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
-          <div class="a">Yes. Pay in full for the lowest total, or split into 2 (adds £100) or 3 (adds £200) payments across the course. Your first payment confirms your seat.</div>
+          <div class="a">Yes. On a pathway, pay in full for the lowest total, or split into 2 (adds £100) or 3 (adds £200) payments across the course. On the AI-Native Cloud Programme, pay <span data-cb="aiNative.priceFull">£799</span> in full or two instalments of <span data-cb="aiNative.instalment">£430</span>, <span data-cb="aiNative.instalmentTotal">£860</span> in total. Your first payment confirms your seat.</div>
         </details>
         <details>
           <summary>How do I pay?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
@@ -200,7 +203,7 @@
         </details>
         <details>
           <summary>When does the cohort start?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
-          <div class="a">Enrollment closes <span data-cb="cohort.enrolmentCloses">27 June 2026</span>. Once seats fill, the next intake is months away.</div>
+          <div class="a">Pathway cohort dates are confirmed with you by email once your seat is held. The current dated intake is the <a href="/academy/ai-native-cloud/">AI-Native Cloud Programme</a>, which starts <span data-cb="aiNative.startDate">Saturday 7 November 2026</span>.</div>
         </details>
       </div>
     </div>
@@ -214,7 +217,7 @@
       <picture><source type="image/webp" srcset="/site/img/logo-white.webp"><img class="u-f0fa7690" src="/site/img/logo-white.png" alt="Cloudboosta" width="141" height="28"></picture>
       <p class="body u-c13d549a">Cloud, DevOps, and optimisation. Practitioners, not theorists.</p>
     </div>
-    <div><p class="fh">Site</p><ul><li><a href="/cloud-services/">Cloud Services</a></li><li><a href="/academy/">Academy</a></li><li><a href="/assessments/">Assessments</a></li><li><a href="/resources/">Resources</a></li><li><a href="/who-we-are/">Who We Are</a></li></ul></div>
+    <div><p class="fh">Site</p><ul><li><a href="/cloud-services/">Cloud Services</a></li><li><a href="/academy/">Academy</a></li><li><a href="/academy/ai-native-cloud/">AI-Native Cloud</a></li><li><a href="/assessments/">Assessments</a></li><li><a href="/resources/">Resources</a></li><li><a href="/who-we-are/">Who We Are</a></li></ul></div>
     <div><p class="fh">Connect</p><ul><li><a href="/book-a-call/">Book a call</a></li><li><a href="mailto:support@cloudboosta.co.uk">support@cloudboosta.co.uk</a></li><li><a href="https://wa.me/447592233052">WhatsApp · Academy</a></li><li><a href="https://wa.me/447565707254">WhatsApp · Services</a></li></ul></div>
     <div><p class="fh">Legal</p><ul><li><a href="/privacy.html">Privacy</a></li><li><a href="#">Terms</a></li></ul></div>
   </div>
